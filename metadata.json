@@ -1,0 +1,7 @@
+{
+  "name": "EJN Benefícios",
+  "description": "O maior cartão de benefícios para Jovens do Brasil. PWA funcional para assinantes, parceiros e gestores.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
