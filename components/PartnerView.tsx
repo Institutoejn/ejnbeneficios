@@ -7,9 +7,13 @@ import {
   X
 } from 'lucide-react';
 
+interface Props {
+  onLogout: () => void;
+}
+
 type PartnerSection = 'scan' | 'history' | 'profile';
 
-const PartnerView: React.FC = () => {
+const PartnerView: React.FC<Props> = ({ onLogout }) => {
   const [activeSection, setActiveSection] = useState<PartnerSection>('scan');
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
@@ -258,7 +262,7 @@ const PartnerView: React.FC = () => {
           <NavItem section="profile" icon={UserCircle} label="Perfil" />
         </div>
         <div className="mt-auto pt-6 border-t border-gray-50">
-          <button onClick={() => window.location.reload()} className="w-full flex items-center gap-3 p-4 rounded-2xl font-bold text-xs text-red-400 hover:bg-red-50 transition-all">
+          <button onClick={onLogout} className="w-full flex items-center gap-3 p-4 rounded-2xl font-bold text-xs text-red-400 hover:bg-red-50 transition-all">
             <LogOut size={18} strokeWidth={2.5} /> Sair
           </button>
         </div>

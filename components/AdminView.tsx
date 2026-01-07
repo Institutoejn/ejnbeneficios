@@ -7,6 +7,10 @@ import {
   X, Check
 } from 'lucide-react';
 
+interface Props {
+  onLogout: () => void;
+}
+
 type AdminSection = 'overview' | 'jovens' | 'parceiros' | 'perfil';
 
 interface Jovem {
@@ -27,7 +31,7 @@ interface Parceiro {
   img: string;
 }
 
-const AdminView: React.FC = () => {
+const AdminView: React.FC<Props> = ({ onLogout }) => {
   const [activeSection, setActiveSection] = useState<AdminSection>('overview');
 
   // --- ESTADO DO BANCO DE DADOS LOCAL ---
@@ -504,7 +508,7 @@ const AdminView: React.FC = () => {
           <NavItem section="perfil" icon={UserCircle} label="Meu Perfil" />
         </div>
         <div className="mt-auto pt-6 border-t border-gray-50">
-           <button onClick={() => window.location.reload()} className="w-full flex items-center gap-3 p-4 rounded-2xl font-bold text-xs text-red-400 hover:bg-red-50 transition-all">
+           <button onClick={onLogout} className="w-full flex items-center gap-3 p-4 rounded-2xl font-bold text-xs text-red-400 hover:bg-red-50 transition-all">
              <LogOut size={18} strokeWidth={2.5} /> Sair
            </button>
         </div>

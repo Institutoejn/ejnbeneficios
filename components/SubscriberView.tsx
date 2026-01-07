@@ -2,7 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MOCK_USER, CATEGORIES, MOCK_PARTNERS, CategoryIcon } from '../constants';
 import VirtualCard from './VirtualCard';
-import { X, QrCode, Star, Sparkles, TrendingUp, Clock, Home, Store, Wallet, User as UserIcon, ArrowRight, Camera, Lock as LockIcon, Check, Save, CreditCard, ChevronRight } from 'lucide-react';
+import { X, QrCode, Star, Sparkles, TrendingUp, Clock, Home, Store, Wallet, User as UserIcon, ArrowRight, Camera, Lock as LockIcon, Check, Save, CreditCard, ChevronRight, LogOut } from 'lucide-react';
+
+interface Props {
+  onLogout: () => void;
+}
 
 type Tab = 'home' | 'partners' | 'wallet' | 'profile';
 
@@ -26,7 +30,7 @@ const MOCK_TRANSACTIONS = [
   { id: 5, partner: 'Burger King', date: '02 Mai, 2025', original: 32.00, paid: 25.60, saved: 6.40, icon: 'https://picsum.photos/100?random=21' },
 ];
 
-const SubscriberView: React.FC = () => {
+const SubscriberView: React.FC<Props> = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [showQRModal, setShowQRModal] = useState(false);
   const [timeLeft, setTimeLeft] = useState(300);
@@ -450,6 +454,16 @@ const SubscriberView: React.FC = () => {
                   <LockIcon size={14} />
                 </div>
              </div>
+
+             {/* Botão Sair - Apenas Mobile (dentro do Perfil) */}
+             <div className="pt-6 lg:hidden border-t border-gray-100 mt-6">
+               <button 
+                 onClick={onLogout}
+                 className="w-full flex items-center justify-center gap-3 p-4 rounded-2xl font-bold text-xs text-red-500 bg-red-50 hover:bg-red-100 transition-all"
+               >
+                 <LogOut size={18} strokeWidth={2.5} /> SAIR DA CONTA
+               </button>
+             </div>
           </div>
         </div>
       </div>
@@ -474,6 +488,16 @@ const SubscriberView: React.FC = () => {
               <item.icon size={16} strokeWidth={2.5} /> {item.label}
             </button>
           ))}
+        </div>
+        
+        {/* Botão Sair - Apenas Desktop (Sidebar) */}
+        <div className="mt-auto pt-6 border-t border-gray-50">
+          <button 
+            onClick={onLogout}
+            className="w-full flex items-center gap-3 p-4 rounded-2xl font-bold text-xs text-red-400 hover:bg-red-50 transition-all"
+          >
+            <LogOut size={18} strokeWidth={2.5} /> Sair
+          </button>
         </div>
       </nav>
 

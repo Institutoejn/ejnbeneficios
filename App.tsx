@@ -41,9 +41,9 @@ const App: React.FC = () => {
       
       <main className={`flex-1 w-full ${isCustomLayout ? 'max-w-full' : 'max-w-6xl mx-auto px-6 md:px-8 lg:px-12 py-8 md:py-10'}`}>
         <div className="animate-in fade-in duration-1000 slide-in-from-bottom-6 h-full">
-          {userRole === UserView.SUBSCRIBER && <SubscriberView />}
-          {userRole === UserView.PARTNER && <PartnerView />}
-          {userRole === UserView.ADMIN && <AdminView />}
+          {userRole === UserView.SUBSCRIBER && <SubscriberView onLogout={handleLogout} />}
+          {userRole === UserView.PARTNER && <PartnerView onLogout={handleLogout} />}
+          {userRole === UserView.ADMIN && <AdminView onLogout={handleLogout} />}
         </div>
       </main>
 
